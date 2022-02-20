@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsActions } from 'redux/index';
-// import PropTypes from "prop-types";
 import s from '../ContactForm/ContactForm.module.css';
 
 export default function ContactForm() {
@@ -82,5 +81,3 @@ export default function ContactForm() {
     </form>
   );
 }
-
-// export default ContactForm;
