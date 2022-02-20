@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { handleFilter } from 'redux/actions';
+import { contactsActions } from 'redux/index';
 const Filter = () => {
   const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
@@ -12,7 +12,9 @@ const Filter = () => {
       <input
         type="text"
         value={filter}
-        onChange={event => dispatch(handleFilter(event.target.value))}
+        onChange={event =>
+          dispatch(contactsActions.handleFilter(event.target.value))
+        }
       ></input>
     </label>
   );

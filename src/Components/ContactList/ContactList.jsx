@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/actions';
-
+import { contactsActions } from 'redux/index';
 const filterInputHandler = (filter, contact) =>
   contact.filter(item =>
     item.name.toLowerCase().includes(filter.toLowerCase())
@@ -19,7 +18,9 @@ const ContactList = () => {
             <li key={id}>
               {name}
               {number}
-              <button onClick={() => dispatch(deleteContact(id))}>
+              <button
+                onClick={() => dispatch(contactsActions.deleteContact(id))}
+              >
                 Delete
               </button>
             </li>
