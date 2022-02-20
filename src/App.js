@@ -2,93 +2,60 @@ import './App.css';
 import ContactForm from './Components/ContactForm/ContactForm';
 import Filter from './Components/Filter/Filter';
 import ContactList from './Components/ContactList/ContactList';
-import { useEffect, useState } from 'react';
-// import { nanoid } from 'nanoid';
+// import { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import * as actions from 'redux/actions';
 export default function App() {
-  // state = {
-  //   contacts: [
-  //     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  //     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  //     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  //     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  //   ],
-  //   filter: '',
+  // const contacts = useSelector(state => state.contacts.items);
+  // const filter = useSelector(state => state.contacts.filter);
+  // const dispatch = useDispatch();
+
+  // const contact = [
+  //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  //   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  //   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  //   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  // ];
+
+  // const [contacts, setContacts] = useState(() => {
+  //   return JSON.parse(window.localStorage.getItem('contact')) || contact;
+  // });
+  // // const [filter, setFilter] = useState('');
+
+  // useEffect(() => {
+  //   window.localStorage.setItem('contact', JSON.stringify(contacts));
+  // }, [contacts]);
+
+  // const addContact = newContact => {
+  //   const searchContactByName = contacts
+  //     .map(contact => contact.name)
+  //     .includes(newContact.name);
+
+  //   if (searchContactByName) {
+  //     alert(`${newContact.name} is already in contacts.`);
+  //     return;
+  //   }
+  //   dispatch(actions.addContact(newContact));
+  //   // setContacts([...contacts, newContact]);
   // };
 
-  const contact = [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ];
+  // const handleFilter = event => {
+  //   dispatch(actions.handleFilter(event));
 
-  const [contacts, setContacts] = useState(() => {
-    return JSON.parse(window.localStorage.getItem('contact')) || contact;
-  });
-  const [filter, setFilter] = useState('');
+  //   // setFilter(event.currentTarget.value);
+  // };
 
-  useEffect(() => {
-    window.localStorage.setItem('contact', JSON.stringify(contacts));
-  }, [contacts]);
+  // const deletaClick = nameId => dispatch(actions.deleteContact(nameId));
 
-  // componentDidMount() {
-  //   const contacts = localStorage.getItem('contact');
-  //   const parsedContacts = JSON.parse(contacts);
-  //   console.log(parsedContacts);
-
-  //   if (parsedContacts) {
-  //     this.setState({ contacts: parsedContacts });
-  //   }
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log(prevState.contacts);
-  //   console.log(this.state.contacts);
-  //   if (prevState.contacts !== this.state.contacts) {
-  //     console.log('ok');
-  //     localStorage.setItem('contact', JSON.stringify(this.state.contacts));
-  //   }
-  // }
-
-  const addContact = newContact => {
-    const searchContactByName = contacts
-      .map(contact => contact.name)
-      .includes(newContact.name);
-
-    console.log(searchContactByName);
-
-    if (searchContactByName) {
-      alert(`${newContact.name} is already in contacts.`);
-      return;
-    }
-
-    setContacts([...contacts, newContact]);
-  };
-
-  const handleFilter = event => {
-    setFilter(event.currentTarget.value);
-  };
-
-  const deletaClick = nameId =>
-    setContacts(prevState =>
-      prevState.filter(contact => contact.id !== nameId)
-    );
-
-  // const { contacts, name, number, filter } = this.state;
+  // setContacts(prevState => prevState.filter(contact => contact.id !== nameId));
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <ContactForm addContact={addContact} />
+      <ContactForm />
       <h2>Contacts</h2>
-      <Filter filter={filter} handleFilter={handleFilter} />
-      <ContactList
-        contact={contacts}
-        filter={filter}
-        deletaClick={deletaClick}
-      />
+      <Filter />
+      <ContactList />
     </div>
   );
 }
-
-// export default App;

@@ -1,28 +1,32 @@
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/actions';
 
-const ContactList = ({ contact, filter, deletaClick }) => (
-  <ul>
-    {contact.map(
-      ({ id, name, number }) =>
-        name.toLowerCase().includes(filter.toLowerCase()) && (
-          <li key={id}>
-            {name}
-            {number}
-            <button onClick={() => deletaClick(id)}>Delete</button>
-          </li>
-        )
-    )}
-  </ul>
-);
+const filterInputHandler = (filter, contact) =>
+  contact.filter(item =>
+    item.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
-ContactList.propTypes = {
-  stats: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.number,
-    })
-  ),
+const ContactList = () => {
+  const filter = useSelector(state => state.contacts.filter);
+  const contact = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
+  const contacts = filterInputHandler(filter, contact);
+  return (
+    <ul>
+      {contacts.map(
+        ({ id, name, number }) =>
+          contacts && (
+            <li key={id}>
+              {name}
+              {number}
+              <button onClick={() => dispatch(deleteContact(id))}>
+                Delete
+              </button>
+            </li>
+          )
+      )}
+    </ul>
+  );
 };
 
 export default ContactList;
